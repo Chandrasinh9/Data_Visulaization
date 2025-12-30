@@ -1,38 +1,269 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  background-color: #f5f5f5;
+  min-height: 100vh;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  color: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 300;
+}
+
+.App-header p {
+  margin: 10px 0 0 0;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.App-main {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.controls {
+  margin-bottom: 20px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  gap: 10px;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.control-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  background-color: #e0e0e0;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.control-btn:hover:not(:disabled) {
+  background-color: #d0d0d0;
+  transform: translateY(-2px);
+}
+
+.control-btn.active {
+  background-color: #667eea;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.control-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.mindmap-controls {
+  margin-bottom: 10px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.control-btn-small {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 15px;
+  background-color: #667eea;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.control-btn-small:hover {
+  background-color: #5a6fd8;
+  transform: translateY(-1px);
+}
+
+.mindmap-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.info-panel {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  padding: 20px;
+  text-align: left;
+}
+
+.info-panel h3 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.3rem;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 10px;
+}
+
+.node-details {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.node-details.hovered {
+  border-left-color: #f39c12;
+  background: #fff9e6;
+}
+
+.node-details h4 {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.node-description {
+  margin: 10px 0;
+  color: #555;
+  line-height: 1.5;
+}
+
+.node-summary {
+  margin: 10px 0;
+  color: #666;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.node-info {
+  margin-top: 15px;
+  display: flex;
+  gap: 20px;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.node-id, .node-children {
+  background: #e9ecef;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-family: monospace;
+}
+
+.hover-hint {
+  margin: 10px 0 0 0;
+  color: #f39c12;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 30px;
+  color: #999;
+}
+
+.empty-state h4 {
+  margin: 0 0 10px 0;
+  color: #666;
+}
+
+.legend {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.legend h4 {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-right: 10px;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.legend-color.root {
+  background-color: #e74c3c;
+}
+
+.legend-color.level1 {
+  background-color: #3498db;
+}
+
+.legend-color.level2 {
+  background-color: #2ecc71;
+}
+
+.legend-color.level3 {
+  background-color: #f39c12;
+}
+
+.instructions {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.instructions h4 {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.instructions ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.instructions li {
+  margin-bottom: 5px;
+  color: #555;
+  line-height: 1.4;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .App-header h1 {
+    font-size: 2rem;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .mindmap-container {
+    padding: 10px;
+  }
+  
+  .controls {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .control-btn {
+    width: 200px;
+  }
+  
+  .node-info {
+    flex-direction: column;
+    gap: 10px;
   }
 }
