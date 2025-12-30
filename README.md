@@ -2,6 +2,9 @@
 
 A clean, interactive mindmap built with React and D3.js. Visualize hierarchical data with smooth interactions and multiple view modes.
 
+VIDEO LINK (DRIVE)
+https://drive.google.com/file/d/1XxYBtu9DL9UnhKISfjTNxeFPtx0Epliw/view?usp=drive_link
+
 ## What's Inside
 
 - **Interactive Mindmap**: Click and explore nodes with smooth animations
